@@ -1,0 +1,76 @@
+<form [formGroup]="registerForm" class="form-register" (ngSubmit)="onSubmit()" *ngIf="registerForm">
+  <h3 class="text-center mt-5 mb-3 font-weight-normal">Signup Form</h3>
+  <div class="row my-3">
+    <label for="fName" class="col-4">First Name</label>
+    <div class="col-8">
+
+      <input type="text" id="fName" name="fName" formControlName="fName" class="form-control" placeholder="" required
+        autofocus>
+
+      <div *ngIf="fName.invalid && fName.touched" class="alert alert-danger">
+        <div *ngIf="fName.errors.required">First Name is required</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <label for="lname" class="col-4">Last Name</label>
+    <div class="col-8">
+
+      <input type="text" id="lname" name="lname" formControlName="lName" class="form-control" placeholder="" required
+        autofocus>
+      <div *ngIf="lName.invalid && lName.touched" class="alert alert-danger">
+        <div *ngIf="lName.errors.required">Last Name is required</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <label for="email" class="col-4">Email</label>
+    <div class="col-8">
+
+      <input type="email" id="email" name="email" formControlName="email" class="form-control" placeholder="" required
+        autofocus>
+      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+        <div *ngIf="email.errors.required">Email is required</div>
+        <div *ngIf="email.errors.email">Email is not valid</div>
+      </div>
+    </div>
+  </div>
+  <div formGroupName="passwords">
+    <div class="row my-3">
+      <label for="password" class="col-4">Password</label>
+      <div class="col-8">
+        <input type="password" id="password" name="password" formControlName="password" class="form-control "
+          placeholder="" required>
+        <div *ngIf="password.invalid && password.touched" class="alert alert-danger">
+          <div *ngIf="password.errors.required">Password is required</div>
+          <div *ngIf="password.errors.minlength">Password minimum length should be of 5 Character</div>
+        </div>
+
+      </div>
+    </div>
+    <div class="row my-3">
+      <label for="cPassword" class="col-4">Confirm Password</label>
+      <div class="col-8">
+        <input type="password" id="cPassword" name="cPassword" formControlName="cPassword" class="form-control"
+          placeholder="" required>
+        <div *ngIf="cPassword.invalid && cPassword.touched" class="alert alert-danger">
+          <div *ngIf="cPassword.errors.required">Password is required</div>
+          <div *ngIf="cPassword.errors.minlength">Password minimum length should be of 5 Character</div>
+        </div>
+        <div *ngIf="!cPassword.invalid && registerForm.get('passwords').invalid && cPassword.touched"
+          class="alert alert-danger">
+          <div *ngIf="registerForm.get('passwords').errors.passMisMatch">Password and Confirm Password does not match
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center">
+
+    <button class="btn btn-lg btn-primary mx-auto my-2" type="submit">Register</button>
+  </div>
+  <a [routerLink]="['/login']">Alreadty have an account? Login here</a>
+
+</form>

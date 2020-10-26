@@ -1,0 +1,38 @@
+<h1 class="my-3"> Dashboard</h1>
+
+<a class="btn btn-primary float-left ml-2 my-3" (click)="create()">Create</a>
+<a class="btn btn-primary float-right mr-2 my-3" (click)="logout()">Logout</a>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Employee id
+      </th>
+      <th scope="col">Employee Name
+      </th>
+      <th scope=" col">Salary
+      </th>
+      <th scope="col">Age
+      </th>
+
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let employee of employees">
+      <tr>
+        <th scope="row">{{employee.id}}</th>
+        <td>{{employee.employee_name}}</td>
+        <td>{{employee.employee_salary}}</td>
+        <td>{{employee.employee_age}}</td>
+
+        <th> <i class="fa fa-edit" (click)="edit(employee)"></i> <i class="material-icons"
+            (click)="delete(employee)">delete</i>
+        </th>
+      </tr>
+    </ng-container>
+
+
+
+  </tbody>
+</table>
